@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-demo-deployment
+  labels:
+    app: postgres-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-demo
+  template:
+    metadata:
+      labels:
+        app: postgres-demo
+    spec:
+      containers:
+      - name: postgres-demo
+        image: eu.gcr.io/tf-admin-242820/postgres-demo:latest
+        ports:
+        - containerPort: 8443
+        envFrom:
+         - secretRef:
+              name: postgres-demo-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-demo-service
+spec:
+  selector:
+    app: postgres-demo
+  ports:
+  - protocol: TCP
+    port: 8443
+    targetPort: 8443
+  type: LoadBalancer
