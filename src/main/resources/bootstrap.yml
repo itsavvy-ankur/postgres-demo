@@ -24,3 +24,9 @@ server.ssl.key-alias: baeldung
 
 security.require-ssl: true
 server.port: 8443
+
+# Management endpoints
+management.endpoint.metrics.enabled: true
+management.endpoints.web.exposure.include: "*"
+management.endpoint.prometheus.enabled: true
+management.endpoints.prometheus.exposure.include: "*"

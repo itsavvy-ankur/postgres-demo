@@ -1,0 +1,22 @@
+apiVersion: voyager.appscode.com/v1beta1
+kind: Ingress
+metadata:
+  name: postgres-demo-ingress
+  annotations:
+    ingress.appscode.com/stats: 'true'
+    ingress.appscode.com/keep-source-ip: "true"
+    ingress.appscode.com/ssl-passthrough: "true"
+    ingress.appscode.com/default-option: '{"http-keep-alive": "true", "dontlognull": "true", "clitcpka": "false"}'
+    ingress.appscode.com/backend-tls: "ssl verify none"
+ 
+spec:
+  rules:
+  - host: postgres-demo.asi.com 
+    http:
+      port: 443
+      paths:
+      - backend:
+          name: postgres-demo-backend
+          serviceName: postgres-demo-service
+          servicePort: 8443
+        path: /

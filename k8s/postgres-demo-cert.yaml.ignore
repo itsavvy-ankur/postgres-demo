@@ -1,0 +1,14 @@
+apiVersion: voyager.appscode.com/v1beta1
+kind: Certificate
+metadata:
+  name: postgres-demo-cert
+spec:
+  domains:
+  - postgres-demo.asi.com
+  acmeUserSecretName: postgres-demo-cert-account
+  challengeProvider:
+    http:
+      ingress:
+        apiVersion: voyager.appscode.com/v1beta1
+        kind: Ingress
+        name: postgres-demo-ingress
