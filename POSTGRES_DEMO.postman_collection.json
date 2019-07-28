@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "e5ea8305-fe26-409f-8143-826acc31ec89",
+		"name": "POSTGRES_DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "METRICS",
+			"item": [
+				{
+					"name": "Health Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{IP}}/actuator/metrics",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus Metrics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{IP}}/actuator/prometheus",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{IP}}/questions?page=0&size=2&sort=createdAt,desc",
+					"protocol": "https",
+					"host": [
+						"{{IP}}"
+					],
+					"path": [
+						"questions"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "createdAt,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Question",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\" : \"1st Question\",\n\t\"description\" : \"Describe 1st Question\"\n}"
+				},
+				"url": {
+					"raw": "https://{{IP}}/questions",
+					"protocol": "https",
+					"host": [
+						"{{IP}}"
+					],
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Answer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{IP}}/questions/1000/answers",
+					"protocol": "https",
+					"host": [
+						"{{IP}}"
+					],
+					"path": [
+						"questions",
+						"1000",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Answer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\" : \"this is the ans to 1st question\"\n\t}"
+				},
+				"url": {
+					"raw": "https://{{IP}}/questions/1000/answers",
+					"protocol": "https",
+					"host": [
+						"{{IP}}"
+					],
+					"path": [
+						"questions",
+						"1000",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
